@@ -22,14 +22,14 @@
 /* Triangle characters for corner clipping (screen codes) */
 #define TRI_BR       0x7E  /* Lower-right filled - clips top-left outer corner */
 #define TRI_BL       0x7C  /* Lower-left filled - clips top-right outer corner */
-#define TRI_TR       0x7B  /* Upper-right filled - clips bottom-left outer corner */
+#define TRI_TR       0x7F  /* Upper-right filled - clips bottom-left outer corner */
 #define TRI_TL       0x6C  /* Upper-left filled - clips bottom-right outer corner */
 
-/* Reverse triangles for inner corner fills */
-#define TRI_TL_REV   0x69  /* Upper-left empty - fills top-left inner corner */
-#define TRI_TR_REV   0x5F  /* Upper-right empty - fills top-right inner corner */
-#define TRI_BL_REV   0x69  /* Lower-left empty - fills bottom-left inner corner */
-#define TRI_BR_REV   0x5F  /* Lower-right empty - fills bottom-right inner corner */
+/* Triangle characters for inner corner fills (same chars, opposite usage) */
+#define TRI_TL_FILL  0x6C  /* Upper-left filled - fills top-left inner corner */
+#define TRI_TR_FILL  0x7B  /* Upper-right filled - fills top-right inner corner */
+#define TRI_BL_FILL  0x7C  /* Lower-left filled - fills bottom-left inner corner */
+#define TRI_BR_FILL  0x7E  /* Lower-right filled - fills bottom-right inner corner */
 
 /* Pattern values */
 #define P_EMPTY      0   /* Empty space */
@@ -171,10 +171,10 @@ unsigned char pattern_to_char(unsigned char p) {
         case P_TR_CLIP: return TRI_BL;      /* Outer top-right corner */
         case P_BL_CLIP: return TRI_TR;      /* Outer bottom-left corner */
         case P_BR_CLIP: return TRI_TL;      /* Outer bottom-right corner */
-        case P_TL_FILL: return TRI_TL_REV;  /* Inner top-left corner */
-        case P_TR_FILL: return TRI_TR_REV;  /* Inner top-right corner */
-        case P_BL_FILL: return TRI_BL_REV;  /* Inner bottom-left corner */
-        case P_BR_FILL: return TRI_BR_REV;  /* Inner bottom-right corner */
+        case P_TL_FILL: return TRI_TL_FILL;  /* Inner top-left corner */
+        case P_TR_FILL: return TRI_TR_FILL;  /* Inner top-right corner */
+        case P_BL_FILL: return TRI_BL_FILL;  /* Inner bottom-left corner */
+        case P_BR_FILL: return TRI_BR_FILL;  /* Inner bottom-right corner */
         default:        return BLOCK_EMPTY;
     }
 }
